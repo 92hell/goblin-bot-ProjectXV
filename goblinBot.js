@@ -23,7 +23,6 @@ client.on("ready", () => {
 
 client.on("message", (message) => {
 	if (!message.content.startsWith(prefix) || message.author.bot){
-		console.log("not started with prefix "+prefix);
 		return;	
 	}
 
@@ -107,7 +106,7 @@ client.on("message", (message) => {
 
 client.on("guildMemberAdd", (member) => {
   console.log('New User '+member.user.username+' has joined '+member.guild.name);
-  member.guild.channels.get("id", 340683549256581140).send(member.user.username+' has joined our guild! Welcome to our humble home!');
+  member.guild.channels.find("id", 340683549256581140).send(member.user.username+' has joined our guild! Welcome to our humble home!');
 });
 
 client.login(config.token);
