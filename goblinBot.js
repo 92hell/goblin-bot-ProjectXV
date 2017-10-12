@@ -37,7 +37,7 @@ client.on("message", (message) => {
 			}});
 		}
 
-		if (command === "suicide") {
+		if (command === "gr") {
 			message.channel.send({embed: {
   				color: color_hex,
   				title: "Time for Suicide Run",
@@ -76,7 +76,7 @@ client.on("message", (message) => {
 								value: "Reminder who is our god"
 							},
 							{
-								name: prefix+"suicide",
+								name: prefix+"gr",
 								value: "Reminder for doing suicide run on guild raid"
 							},
 							{
@@ -106,7 +106,9 @@ client.on("message", (message) => {
 
 client.on("guildMemberAdd", (member) => {
   console.log('New User '+member.user.username+' has joined '+member.guild.name);
-  member.guild.channels.find("id", 340683549256581140).send(member.user.username+' has joined our guild! Welcome to our humble home!');
+  const channel = member.guild.channels.find('name', 'guild_chat');
+  if(!channel) return;
+  channel.send(member.user.username+' has joined our guild! Welcome to our humble home!');
 });
 
 client.login(config.token);

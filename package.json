@@ -1,21 +1,21 @@
 {
   "name": "goblin-bot",
   "version": "0.1",
-  "description": "A bbot for ProjectXV guild",
+  "description": "A bot for ProjectXV guild",
   "main": "node goblin-bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node goblin-bot.js"
   },
   "engines": {
-    "node": "8.4.0"
+    "node": "^8.4.0"
   },
   "author": "92hell",
   "dependencies": {
     "discord.js": "^11.2.1",
-    "enmap": "^0.3.2",
-    "moment": "^2.18.1",
+    "enmap": "^0.4.1",
+    "moment": "^2.19.1",
     "moment-duration-format": "^1.3.0",
-    "express": "^4.15.5"
+    "express": "^4.16.2"
   }
 }
