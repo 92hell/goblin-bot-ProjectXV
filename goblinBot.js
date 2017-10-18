@@ -144,7 +144,7 @@ function fetchForum(){
         		}
     		}
     		else{
-    			console.log('no new post');
+    			console.log('no new post on post number '+postNumber);
     		}
 		}
 	);

@@ -6,7 +6,7 @@ const client = new Discord.Client();
 const postNumber = config.postNumber;
 const url = "https://www.plug.game/kingsraid-en/posts/"+postNumber;
 
-	request({
+request({
     	url: url,
     	json: true
 		}, function (error, response, body) {
@@ -33,7 +33,7 @@ const url = "https://www.plug.game/kingsraid-en/posts/"+postNumber;
         		}
     		}
     		else{
-    			console.log('no new post');
+    			console.log('no new post on post number '+postNumber);
     		}
 		}
 	);
