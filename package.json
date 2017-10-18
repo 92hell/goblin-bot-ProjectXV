@@ -1,6 +1,6 @@
 {
   "name": "goblin-bot",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "A bot for ProjectXV guild",
   "main": "node goblin-bot.js",
   "scripts": {
