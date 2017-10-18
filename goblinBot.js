@@ -112,7 +112,7 @@ client.on("guildMemberAdd", (member) => {
   channel.send(member.user.username+' has joined our guild! Welcome to our humble home!');
 });
 
-function fetchForum = () => {
+function fetchForum(){
 	const request = require("request");
 	const postNumber = config.postNumber;
 	const url = "https://www.plug.game/kingsraid-en/posts/"+postNumber;
