@@ -202,7 +202,7 @@ function fetchGuildRaid(){
 	if(config.kill){
 		client.guilds.find('name', 'ProjectXV').channels.find('name', 'guild_chat').send({embed: {
   			color: color_hex,
-  			title: "Kill the Manticore"
+  			title: "Kill the Manticore",
   			description: "It is Sunday, Time for Us to Kill the Manticore. No More Holding Back, @everyone Charge!!!!"
 		}});
 	}
