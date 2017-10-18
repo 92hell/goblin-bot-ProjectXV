@@ -39,18 +39,57 @@ client.on("message", (message) => {
 		}
 
 		if (command === "gr") {
-			message.channel.send({embed: {
-  				color: color_hex,
-  				title: "Time for Suicide Run",
-  				description: "Friendly Reminder for @everyone to Do Suicide Run on Guild Raid until Sunday! Suicide Run is just doing guild raid with only one char to leech guild points and not to kill the boss."
-			}});
+			if(!config.suicide && !config.kill){
+    			config.suicide = true;
+    			fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+
+    			message.channel.send({embed: {
+  					color: color_hex,
+  					title: "Guild Raid Run Status Change",
+  					description: "Guild Raid Run Status is now set to Suicide Run"
+				}});
+			}else if(config.suicide && !config.kill){
+				config.suicide = false;
+				config.kill = true;
+    			fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+
+    			message.channel.send({embed: {
+  					color: color_hex,
+  					title: "Guild Raid Run Status Change",
+  					description: "Guild Raid Run Status is now set to Kill the Manticore"
+				}});
+			}else if(config.kill){
+				config.kill = false;
+    			fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
+
+    			message.channel.send({embed: {
+  					color: color_hex,
+  					title: "Guild Raid Completed",
+  					description: "Guild Raid is now Completed. Good Work @everyone Thanks for All of Your Hard Work!"
+				}});
+			}
 		}
 
-		if (command === "kill") {
-			message.channel.send({embed: {
-  				color: color_hex,
-  				description: "Kill the Manticore Now!"
-			}});
+		if (command === "stage") {
+			if(config.suicide){
+    			message.channel.send({embed: {
+  					color: color_hex,
+  					title: "Guild Raid Run Status Change",
+  					description: "Guild Raid Run Status is now set to Suicide Run"
+				}});
+			}else if(config.kill){
+				message.channel.send({embed: {
+  					color: color_hex,
+  					title: "Guild Raid Run Status Change",
+  					description: "Guild Raid Run Status is now set to Kill the Manticore"
+				}});
+			}else if(!config.suicide && !config.kill){
+				message.channel.send({embed: {
+  					color: color_hex,
+  					title: "Guild Raid Completed",
+  					description: "Guild Raid is now Completed. Good Work @everyone Thanks for All of Your Hard Work!"
+				}});
+			}
 		}
 
 		if (command === "test") {
@@ -78,11 +117,11 @@ client.on("message", (message) => {
 							},
 							{
 								name: prefix+"gr",
-								value: "Reminder for doing suicide run on guild raid"
+								value: "Trigger for reminder on guild raid"
 							},
 							{
-								name: prefix+"kill",
-								value: "Reminder for killing the boss"
+								name: prefix+"stage",
+								value: "Info on what stage our guild raid is"
 							},
 							{
 								name: prefix+"test",
@@ -151,5 +190,24 @@ function fetchForum(){
 };
 
 setInterval(fetchForum, 60000);
+
+function fetchGuildRaid(){
+	if(config.suicide){
+		client.guilds.find('name', 'ProjectXV').channels.find('name', 'guild_chat').send({embed: {
+  			color: color_hex,
+  			title: "Time for Suicide Run",
+  			description: "Friendly Reminder for @everyone to Do Suicide Run on Guild Raid until Sunday! Suicide Run is just doing guild raid with only one char to leech guild points and not to kill the boss."
+		}});
+	}
+	if(config.kill){
+		client.guilds.find('name', 'ProjectXV').channels.find('name', 'guild_chat').send({embed: {
+  			color: color_hex,
+  			title: "Kill the Manticore"
+  			description: "It is Sunday, Time for Us to Kill the Manticore. No More Holding Back, @everyone Charge!!!!"
+		}});
+	}
+};
+
+setInterval(fetchGuildRaid, 7200000);
 
 client.login(config.token);

@@ -1,6 +1,7 @@
 {
   "token": "MzY1NDMzNzA4NTIzNTUyNzY4.DL9viw.dzenwYChXKhAkMXreNPaRcdXZ48",
   "prefix": "$",
-  "suicide": true,
+  "suicide": false,
+  "kill": false,
   "postNumber": 4610
 }
