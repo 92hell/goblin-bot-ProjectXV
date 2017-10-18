@@ -74,19 +74,19 @@ client.on("message", (message) => {
 			if(config.suicide){
     			message.channel.send({embed: {
   					color: color_hex,
-  					title: "Guild Raid Run Status Change",
+  					title: "Guild Raid Run Status",
   					description: "Guild Raid Run Status is now set to Suicide Run"
 				}});
 			}else if(config.kill){
 				message.channel.send({embed: {
   					color: color_hex,
-  					title: "Guild Raid Run Status Change",
+  					title: "Guild Raid Run Status",
   					description: "Guild Raid Run Status is now set to Kill the Manticore"
 				}});
 			}else if(!config.suicide && !config.kill){
 				message.channel.send({embed: {
   					color: color_hex,
-  					title: "Guild Raid Completed",
+  					title: "Guild Raid Run Status",
   					description: "Guild Raid is now Completed. Good Work @everyone Thanks for All of Your Hard Work!"
 				}});
 			}
