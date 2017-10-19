@@ -4,9 +4,10 @@ const fs = require('fs');
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const oldPostNumber = config.postNumber;
+let currentPostNumber = oldPostNumber;
 
 for (var i = 0; i < 100; i++) {
-    let currentPostNumber = oldPostNumber+i;
+    currentPostNumber = oldPostNumber+i;
     let url = "https://www.plug.game/kingsraid-en/posts/"+currentPostNumber;
     request({
         url: url,
@@ -19,7 +20,7 @@ for (var i = 0; i < 100; i++) {
 
                 var regex = new RegExp('<h3 class="board_name">(.*?)<\/h3>');
                 var tag = body.match(regex);
-                console.log('Post Number '+postNumber+' Tagged '+tag[1]); // Print the json response
+                console.log('Post Number '+currentPostNumber+' Tagged '+tag[1]); // Print the json response
 
                 var postType = tag[1];
 
@@ -34,9 +35,7 @@ for (var i = 0; i < 100; i++) {
                     guild.channels.find('name', 'events').send(url);
                 }
             }
-            else{
-                console.log('no new post on post number '+currentPostNumber);
-            }
         }
     );
 }
+console.log('Checked post number #'+oldPostNumber+' until post number #'+currentPostNumber);
