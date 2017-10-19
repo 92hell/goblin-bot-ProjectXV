@@ -6,21 +6,22 @@ const client = new Discord.Client();
 const oldPostNumber = config.postNumber;
 let currentPostNumber = oldPostNumber;
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 10; i++) {
     currentPostNumber = oldPostNumber+i;
     let url = "https://www.plug.game/kingsraid-en/posts/"+currentPostNumber;
+    let asyncPostNumber = currentPostNumber;
     request({
         url: url,
         json: true
         }, function (error, response, body) {
             if (!error && response.statusCode === 200) {
-                let newPostNumber = currentPostNumber+1;
+                let newPostNumber = asyncPostNumber+1;
                 config.postNumber = newPostNumber;
                 fs.writeFile("./config.json", JSON.stringify(config), (err) => console.error);
 
                 var regex = new RegExp('<h3 class="board_name">(.*?)<\/h3>');
                 var tag = body.match(regex);
-                console.log('Post Number '+currentPostNumber+' Tagged '+tag[1]); // Print the json response
+                console.log('Post Number '+asyncPostNumber+' Tagged '+tag[1]); // Print the json response
 
                 var postType = tag[1];
 
